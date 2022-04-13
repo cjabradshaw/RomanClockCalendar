@@ -1,4 +1,4 @@
-# Roman numeral calendar and clock
+# Roman numeral date and clock
 
 <img align="right" src="www/RomanClockEx.png" alt="Roman Calendar/Clock" width="300" style="margin-top: 20px">
 
@@ -12,7 +12,7 @@ R code to produce a simple date and clock plot in Roman Numerals. Works on a 24-
 You can do this easily with the following command:
 > <code>install.packages(c("caroline", "lubridate"))</code>
 
-2. Simply run the script in R, then you're ready to plot a real-time clock and date in Roman numerals. 
+2. Simply run the script <code>RomanDateClock.R</code> in R, then you're ready to plot a real-time date and clock in Roman numerals. 
 
 Note that there is no zero in Roman numerals (apparently, the Romans had no need for it). I've therefore just incuded '00' when the hour or minute = zero in the 24-hour clock. Date format is DD.MM.YYYY.
   

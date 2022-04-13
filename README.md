@@ -2,11 +2,11 @@
 
 <img align="right" src="www/RomanClockEx.png" alt="Roman Calendar/Clock" width="300" style="margin-top: 20px">
 
-R code to produce a simple date and clock plot in Roman Numerals. Works on a 24-hour system. Clock plot based on a modified version of <code>caroline::plotClock</code>.
+R code to produce a simple date and clock plot in Roman Numerals. Works on a 24-hour system. Clock plot based on a modified version of <code>caroline::<a href="https://search.r-project.org/CRAN/refmans/caroline/html/plotClock.html">plotClock</a></code>.
 
 ## Set-up
 1. Install the following libraries in R:
-- <code><a href="https://search.r-project.org/CRAN/refmans/caroline/html/plotClock.html">caroline</a></code>
+- <code><a href="https://cran.r-project.org/web/packages/caroline/index.html">caroline</a></code>
 - <code><a href="https://lubridate.tidyverse.org/">lubridate</a></code>
 
 You can do this easily with the following command:

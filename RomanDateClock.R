@@ -21,7 +21,7 @@ plotClockRoman <- function (hour, minute, x0 = 0, y0 = 0, r = 1) {
   segments(x0,y0,minuteVXY$x[1],minuteVXY$y[1],col="grey")
   hourV <- hour/12 + minuteV/12
   hourVXY <- caroline::makeElipseCoords(x0=x0,y0=y0,b=0.7*r,a=0.7*r,alpha=0,pct.range=(0.25-rep(hourV,2)),len=1)
-  segments(x0, y0, hourVXY$x, hourVXY$y)
+  segments(x0, y0, hourVXY$x, hourVXY$y,lwd=1.5)
 }
 
 currentTime <- Sys.time() # current time

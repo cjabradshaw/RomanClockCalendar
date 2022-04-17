@@ -6,7 +6,7 @@
 ## modified from plotClock in the caroline package
 plotClockRoman <- function (hour, minute, x0 = 0, y0 = 0, r = 1) {
   circleXY <- caroline::makeElipseCoords(x0=x0,y0=y0,b=1.1*r,a=1.1*r,alpha=0,pct.range=c(0,1),len=50)
-  quarHourTickMarksXY <- caroline::makeElipseCoords(x0=x0,y0=y0,b=1.05*r,a=1.05*r,alpha=(pi/2),pct.range=c((12*4-1)/(12*4),0),len=12*4)
+  quarHourTickMarksXY <- caroline::makeElipseCoords(x0=x0,y0=y0,b=1.05*r,a=1.05*r,alpha=(pi/2),pct.range=c((12*5-1)/(12*5),0),len=12*5)
   hourLabelsXY <- caroline::makeElipseCoords(x0=x0,y0=y0,b=0.9*r,a=0.9*r,alpha=(pi/2),pct.range=c(11/12,0),len=12)
   polygon(circleXY)
   if (hour >= 12) {
@@ -15,10 +15,10 @@ plotClockRoman <- function (hour, minute, x0 = 0, y0 = 0, r = 1) {
         roman.seq <- utils::as.roman(seq(1,12))  
     }
   text(hourLabelsXY[, 1],hourLabelsXY[, 2],roman.seq,cex=0.5,vfont=c("serif","EUC"))
-  text(quarHourTickMarksXY[,1],quarHourTickMarksXY[, 2],".")
+  text(quarHourTickMarksXY[,1],quarHourTickMarksXY[, 2],".",col="dark grey")
   minuteV <- minute/60
   minuteVXY <- caroline::makeElipseCoords(x0=x0,y0=y0,b=r,a=r,alpha=0,pct.range=(0.25-rep(minuteV,2)),len=1)
-  segments(x0,y0,minuteVXY$x[1],minuteVXY$y[1])
+  segments(x0,y0,minuteVXY$x[1],minuteVXY$y[1],col="grey")
   hourV <- hour/12 + minuteV/12
   hourVXY <- caroline::makeElipseCoords(x0=x0,y0=y0,b=0.7*r,a=0.7*r,alpha=0,pct.range=(0.25-rep(hourV,2)),len=1)
   segments(x0, y0, hourVXY$x, hourVXY$y)

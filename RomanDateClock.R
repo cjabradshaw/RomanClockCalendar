@@ -88,7 +88,12 @@ if (day.now == (Ides[month.now] - 1)) {
   LatinDateDesc <- paste("Pridie Idibvs", LatinMonth[month.now], sep=" ")
 }
 if (day.now == as.numeric(lubridate::days_in_month(currentTime))) {
-  LatinDateDesc <- paste("Pridie Calendas", LatinMonth[month.now + 1], sep=" ")
+  if (month.now < 12) {
+    LatinDateDesc <- paste("Pridie Calendas", LatinMonth[month.now + 1], sep=" ")
+  }
+  if (month.now == 12) {
+    LatinDateDesc <- paste("Pridie Calendas", LatinMonth[1], sep=" ")
+  }
 }
 
 # Latin date as text

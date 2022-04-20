@@ -17,7 +17,7 @@ You can do this easily with the following command:
 - Note that there is no zero in Roman numerals (apparently, the Romans had no need for it). I've therefore just incuded '00' when the hour or minute = zero in the 24-hour clock.
 - Top date is the Gregorian date in Roman numeral format (DD.MM.YYYY).
 - Also provided is the date in the Roman calendar in Latin. Briefly, the date follows these rules:
-    - there are seven days of the week (in Latin — <em>Dies Lvnae</em>, <em>Dies Martis</em>, <em>Dies Mercvris</em>, <em>Dies Iovis</em>, <em>Dies Veneris</em>, <em>Dies Satvrni</em>, <em>Dies Solis</em>)
+    - there are seven days in the week as in the modern week (but in Latin — <em>Dies Lvnae</em>, <em>Dies Martis</em>, <em>Dies Mercvris</em>, <em>Dies Iovis</em>, <em>Dies Veneris</em>, <em>Dies Satvrni</em>, <em>Dies Solis</em>)
     - months are the same as modern months (but in Latin — <em>Ianvarivs</em>, <em>Febrvarivs</em>, <em>Martivs</em>, <em>Aprilis</em>, <em>Maivs</em>, <em>Ivnivs</em>, <em>Ivlivs</em>, <em>Avgvstvs</em>, <em>September</em>, <em>October</em>, <em>November</em>, <em>December</em>)
     - the 1st of every month is a <a href="https://www.wordsense.eu/calends/"><strong><em>Kalends</em></strong></a>
     - the 13<sup>th</sup> (Jan, Feb, Apr, Jun, Aug, Sep, Nov, Dec) or the 15<sup>th</sup> (Mar, May, Jul, Oct) are the <a href="https://www.wordsense.eu/ides/"><strong><em>Ides</em></strong></a>

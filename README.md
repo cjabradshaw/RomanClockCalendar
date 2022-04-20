@@ -26,6 +26,7 @@ You can do this easily with the following command:
     - if the date falls on the day before a special day, it receives the precursor <strong><em>Pridie</em></strong> ('the day before') before the name of the relevant special day
     - the reference year is the <a href="https://historycooperative.org/the-founding-of-rome-birth-of-an-empire/">founding of Rome</a> as a city (753 BC)
         - e.g., '<em>Est Dies Mercvris ante diem XI Calendas Maivs MMDCCLXXV Ab Vrbe condita</em>' means 'Today is Wednesday the 11<sup>th</sup> day before the Kalends of May, 2775 years after the founding (of Rome)' (i.e., 20 April 2022)
+        - e.g., '<em>Est Dies Veneris Pridie Calendas Ianvarivs MMDCCLII Ab Vrbe condita</em>' means 'Today is Friday the day before the Kalends of January, 2752 years after the founding (of Rome)' (i.e., 31 December 1999)
   
 <br>
 Prof <a href="http://scholar.google.com.au/citations?sortby=pubdate&hl=en&user=1sO0O3wAAAAJ&view_op=list_works">Corey J. A. Bradshaw</a> <br>

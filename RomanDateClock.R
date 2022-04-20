@@ -67,7 +67,7 @@ if (day.now > 1 & day.now < (Nones[month.now] - 1)) {
 
 if (day.now > Nones[month.now] & day.now < (Ides[month.now] - 1)) {
   daycount <- as.roman(as.numeric(Ides[month.now] - day.now + 1))
-  LatinDateDesc <- paste(daycount, "Idvs", LatinMonth[month.now], sep=" ")
+  LatinDateDesc <- paste(daycount, "Idibvs", LatinMonth[month.now], sep=" ")
 }
 
 if (day.now > Ides[month.now]) {
@@ -85,7 +85,7 @@ if (day.now == (Nones[month.now] - 1)) {
   LatinDateDesc <- paste("Pridie Nonas", LatinMonth[month.now], sep=" ")
 }
 if (day.now == (Ides[month.now] - 1)) {
-  LatinDateDesc <- paste("Pridie Idus", LatinMonth[month.now], sep=" ")
+  LatinDateDesc <- paste("Pridie Idibvs", LatinMonth[month.now], sep=" ")
 }
 if (day.now == as.numeric(lubridate::days_in_month(currentTime))) {
   LatinDateDesc <- paste("Pridie Calendas", LatinMonth[month.now + 1], sep=" ")

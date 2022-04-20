@@ -22,8 +22,8 @@ You can do this easily with the following command:
     - the 13th (Jan, Feb, Apr, Jun, Aug, Sep, Nov, Dec) or the 15th (Mar, May, Jul, Oct) are the <em>Ides</em>
     - the <em>Nones</em> are 8 days prior to the <em>Ides</em>
     - All other days work backward from the next 'special day' (i.e., <em>Kalends</em>, <em>Nones</em>, or <em>Ides</em>), + 1 to account for the day itself
-    - the reference year is the establishment of Rome as a city (753 BC)
-    - e.g., '<em>Est Dies Mercvris ante diem XI Calendas Maivs MMDCCLXXV Ab Vurbe condita</em>' means 'Today is Wednesday the 11th day before the Kalends of May 2775 years after the establishment of Rome' (i.e., 20 April 2022)
+    - the reference year is the founding of Rome as a city (753 BC)
+    - e.g., '<em>Est Dies Mercvris ante diem XI Calendas Maivs MMDCCLXXV Ab Vurbe condita</em>' means 'Today is Wednesday the 11th day before the Kalends of May 2775 years after the founding (of Rome)' (i.e., 20 April 2022)
   
 <br>
 Prof <a href="http://scholar.google.com.au/citations?sortby=pubdate&hl=en&user=1sO0O3wAAAAJ&view_op=list_works">Corey J. A. Bradshaw</a> <br>

@@ -81,23 +81,33 @@ if (day.now > Ides[month.now]) {
 }
 
 # special day eve
+Pridie <- FALSE
 if (day.now == (Nones[month.now] - 1)) {
   LatinDateDesc <- paste("Pridie Nonas", LatinMonth[month.now], sep=" ")
+  Pridie <- TRUE
 }
 if (day.now == (Ides[month.now] - 1)) {
   LatinDateDesc <- paste("Pridie Idibvs", LatinMonth[month.now], sep=" ")
+  Pridie <- TRUE
 }
 if (day.now == as.numeric(lubridate::days_in_month(currentTime))) {
   if (month.now < 12) {
     LatinDateDesc <- paste("Pridie Calendas", LatinMonth[month.now + 1], sep=" ")
+    Pridie <- TRUE
   }
   if (month.now == 12) {
     LatinDateDesc <- paste("Pridie Calendas", LatinMonth[1], sep=" ")
+    Pridie <- TRUE
   }
 }
 
 # Latin date as text
-LDate1 <- paste("Est", Ldow, "ante diem", LatinDateDesc, sep=" ")
+if (Pridie == F) {
+  LDate1 <- paste("Est", Ldow, "ante diem", LatinDateDesc, sep=" ")
+}
+if (Pridie == T) {
+  LDate1 <- paste("Est", Ldow, LatinDateDesc, sep=" ")
+}
 LDate2 <- paste(as.roman(year.now + 753), "Ab Vrbe condita", sep=" ") # from the establishment of Rome 753 BC
 
 # Romanise for Gregorian date and 24-hour clock

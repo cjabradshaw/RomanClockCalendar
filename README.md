@@ -19,8 +19,8 @@ You can do this easily with the following command:
 - Also provided is the date in the Roman calendar in Latin. Briefly, the date follows these rules:
     - months are the same as modern months (but in Latin)
     - the 1st of every month is a <a href="https://www.wordsense.eu/calends/"><strong><em>Kalends</em></strong></a>
-    - the 13<sup>th</sup> (Jan, Feb, Apr, Jun, Aug, Sep, Nov, Dec) or the 15<sup>th</sup> (Mar, May, Jul, Oct) are the <strong><em>Ides</em></strong>
-    - the <a href="https://www.wordsense.eu/nones/"><strong><em>Nones</em></strong></a> are 8 days prior to the <a href="https://www.wordsense.eu/ides/"><strong><em>Ides</em></strong></a>
+    - the 13<sup>th</sup> (Jan, Feb, Apr, Jun, Aug, Sep, Nov, Dec) or the 15<sup>th</sup> (Mar, May, Jul, Oct) are the <a href="https://www.wordsense.eu/ides/"><strong><em>Ides</em></strong></a>
+    - the <a href="https://www.wordsense.eu/nones/"><strong><em>Nones</em></strong></a> are 8 days prior to the <strong><em>Ides</em></strong>
     - All other days work backward from the next 'special day' (i.e., <em>Kalends</em>, <em>Nones</em>, or <em>Ides</em>), + 1 to account for the day itself
     - if the date falls on the day before a special day, it receives the precursor <strong><em>Pridie</em></strong> ('the day before') before the name of the relevant special day
     - the reference year is the <a href="https://historycooperative.org/the-founding-of-rome-birth-of-an-empire/">founding of Rome</a> as a city (753 BC)

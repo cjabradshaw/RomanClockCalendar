@@ -15,7 +15,7 @@ You can do this easily with the following command:
 2. Simply run the script <code>RomanDateClock.R</code> in R, then you're ready to plot a real-time date and clock in Roman numerals. 
 
 - Note that there is no zero in Roman numerals (apparently, the Romans had no need for it). I've therefore just incuded '00' when the hour or minute = zero in the 24-hour clock.
-- Date format is DD.MM.YYYY.
+- Top date is the Gregorian date in Roman numeral format (DD.MM.YYYY).
 - Also provided is the date in the Roman calendar in Latin. Briefly, the date follows these rules:
     - months are the same as modern months (but in Latin)
     - the 1st of every month is a <em>Kalends</em>

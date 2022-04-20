@@ -18,10 +18,11 @@ You can do this easily with the following command:
 - Top date is the Gregorian date in Roman numeral format (DD.MM.YYYY).
 - Also provided is the date in the Roman calendar in Latin. Briefly, the date follows these rules:
     - months are the same as modern months (but in Latin)
-    - the 1st of every month is a <em>Kalends</em>
-    - the 13th (Jan, Feb, Apr, Jun, Aug, Sep, Nov, Dec) or the 15th (Mar, May, Jul, Oct) are the <em>Ides</em>
-    - the <em>Nones</em> are 8 days prior to the <em>Ides</em>
+    - the 1st of every month is a <strong><em>Kalends</em></strong>
+    - the 13<sup>th</sup> (Jan, Feb, Apr, Jun, Aug, Sep, Nov, Dec) or the 15<sup>th<sup> (Mar, May, Jul, Oct) are the <strong><em>Ides</em></strong>
+    - the <em>Nones</em> are 8 days prior to the <strong><em>Ides</em></strong>
     - All other days work backward from the next 'special day' (i.e., <em>Kalends</em>, <em>Nones</em>, or <em>Ides</em>), + 1 to account for the day itself
+    - if the date falls on the day before a special day, it receives the precursor <strong><em>Pridie</em></strong> ('the day before') before the name of the relevant special day
     - the reference year is the <a href="https://historycooperative.org/the-founding-of-rome-birth-of-an-empire/">founding of Rome</a> as a city (753 BC)
     - e.g., '<em>Est Dies Mercvris ante diem XI Calendas Maivs MMDCCLXXV Ab Vurbe condita</em>' means 'Today is Wednesday the 11th day before the Kalends of May, 2775 years after the founding (of Rome)' (i.e., 20 April 2022)
   

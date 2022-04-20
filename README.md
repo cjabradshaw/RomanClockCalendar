@@ -29,7 +29,8 @@ You can do this easily with the following command:
 Some examples:
 - '<em>Est Dies Mercvris ante diem XI Calendas Maivs MMDCCLXXV Ab Vrbe condita</em>' means 'Today is Wednesday the 11<sup>th</sup> day before the Kalends of May, 2775 years after the founding (of Rome)' (i.e., 20 April 2022)
 - '<em>Est Dies Veneris Pridie Calendas Ianvarivs MMDCCLII Ab Vrbe condita</em>' means 'Today is Friday the day before the Kalends of January, 2752 years after the founding (of Rome)' (i.e., 31 December 1999)
-- '<em>Est Dies Solis ante diem III Idibvs Febrvarivs MMDCCXLIII Ab Vrbe condita</em>' means 'Today is Sunday the third day before the Ides of February, 2743 years after the founding (of Rome)' (i.e., 11 February 1990)
+- '<em>Est Dies Solis ante diem III Idibvs Febrvarivs MMDCCXLIII Ab Vrbe condita</em>' means 'Today is Sunday the third day before the Ides of February, 2743 years after the founding (of Rome)' (i.e., Nelson Mandela released from prison; 11 February 1990)
+- '<em>Est Dies Lvnae ante diem V Nonas Ivlivs MMDCCXLII Ab Vrbe condita</em>' means 'Today is Monday the fifth day before the Nones of July, 2742 years after the founding (of Rome)' (i.e., Tiananmen Square massacre begins; 03 July 1989)
   
 <br>
 Prof <a href="http://scholar.google.com.au/citations?sortby=pubdate&hl=en&user=1sO0O3wAAAAJ&view_op=list_works">Corey J. A. Bradshaw</a> <br>

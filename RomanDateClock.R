@@ -140,4 +140,6 @@ text(x=5, y=8, labels=LDate1, adj=0.5, cex=0.65, vfont=c("serif", "EUC"))
 text(x=5, y=7.5, labels=LDate2, adj=0.5, cex=0.65, vfont=c("serif", "EUC"))
 text(x=5, y=7, labels=paste("feriatum : ", dies.feriae, sep=""), adj=0.5, cex=0.65, vfont=c("serif", "EUC"))
 text(x=5, y=5.5, labels=paste(hour.rom, ":", min.rom, sep=""), adj=0.5, cex=1.6, vfont=c("serif", "EUC"))
-plotClockRoman(hour=as.numeric(hour.now), minute=as.numeric(min.now), x0 = 5, y0 = 2.4, r = 2)
+text(x=5, y=-0.1, labels="nvlla dies vmqvam memori vos eximet aevo", adj=0.5, cex=0.6, vfont=c("serif", "italic"))
+plotClockRoman(hour=as.numeric(hour.now), minute=as.numeric(min.now), x0 = 5, y0 = 2.5, r = 2)
+

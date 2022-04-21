@@ -1,4 +1,4 @@
-# Roman numeral date and clock
+# Roman numeral date, calendar, and clock
 
 <img align="right" src="www/RomanClockEx.png" alt="Roman Calendar/Clock" width="300" style="margin-top: 20px">
 

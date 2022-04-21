@@ -37,6 +37,7 @@ Some examples:
   
 <br>
 Prof <a href="http://scholar.google.com.au/citations?sortby=pubdate&hl=en&user=1sO0O3wAAAAJ&view_op=list_works">Corey J. A. Bradshaw</a> <br>
+<em>Veni, vidi, vici</em> <br>
 <a href="http://globalecologyflinders.com" target="_blank">Global Ecology</a>, <a href="http://flinders.edu.au" target="_blank">Flinders University</a>, Adelaide, Australia <br>
 April 2022 <br>
 <a href=mailto:corey.bradshaw@flinders.edu.au>e-mail</a> <br>

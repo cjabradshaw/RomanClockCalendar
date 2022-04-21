@@ -25,6 +25,7 @@ You can do this easily with the following command:
     - All other days work backward from the next 'special day' (i.e., <em>Kalends</em>, <em>Nones</em>, or <em>Ides</em>), + 1 to account for the day itself
     - if the date falls on the day before a special day, it receives the precursor <strong><em>Pridie</em></strong> ('the day before') before the name of the relevant special day
     - the reference year is the <a href="https://historycooperative.org/the-founding-of-rome-birth-of-an-empire/">founding of Rome</a> as a city (753 BC)
+    - if the day happens to be be a <a href="https://en.wikipedia.org/wiki/Roman_festivals">Roman festival</a> day (<em>feriatum</em>), then the relevant feriatum will be indicated; if it is not a festival day, the <em>feriatum</em> will return <em>nullus</em> (none).
 
 Some examples:
 - '<em>Est Dies Mercvris ante diem XI Calendas Maivs MMDCCLXXV Ab Vrbe condita</em>' means 'Today is Wednesday the 11<sup>th</sup> day before the Kalends of May, 2775 years after the founding (of Rome)' (i.e., 20 April 2022)

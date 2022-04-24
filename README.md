@@ -12,11 +12,12 @@ R code to produce a simple date and clock plot in Roman numerals (Gregorian) and
 You can do this easily with the following command:
 > <code>install.packages(c("caroline", "lubridate"))</code>
 
-2. Download the Roman festivals (<em>feriae</em>) dataset (<code>feriae.RData</code>) into the source directory.
+2. Download the Roman festivals (<em>feriae</em>) dataset (<code>feriae.RData</code>) and Latin number names dataset (<code>RomNumNam.RData</code>) into the source directory.
 
 3. Run the script <code>RomanDateClock.R</code> in R, then you're ready to plot a real-time date and clock in Roman numerals & Latin. 
 
-- Note that there is no zero in Roman numerals (apparently, the Romans had no need for it). I've therefore just incuded '00' when the hour or minute = zero in the 24-hour clock.
+- Note that there is no zero in Roman numerals (the Romans had no need for it, apparently). I've therefore just incuded '00' when the hour or minute = zero in the 24-hour clock.
+- I have provided the time in Latin text as well below the Roman numeral time display: e.g., the time 15:49 is spelt out as <em>qvindecim vndeqvinqvaginta</em>; note that when the hour = 00, I have replaced <em>nihil</em> ('nothing') with <em>media nocte</em> ('midnight')
 - Top date is the Gregorian date in Roman numeral format (DD.MM.YYYY).
 - Also provided is the Roman calendar date in in Latin. Briefly, the date format follows these rules:
     - there are seven days in the week as in the modern week (but in Latin — <em>Dies Lvnae</em>, <em>Dies Martis</em>, <em>Dies Mercvris</em>, <em>Dies Iovis</em>, <em>Dies Veneris</em>, <em>Dies Satvrni</em>, <em>Dies Solis</em>)

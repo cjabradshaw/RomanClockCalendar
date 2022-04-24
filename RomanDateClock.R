@@ -123,7 +123,7 @@ if (as.numeric(min.now) == 0) {
   min.rom <- sprintf("%02d",0)
 }
 
-# set working directory to script's location
+# set working directory to script's location (from https://gist.github.com/jasonsychau)
 stub <- function() {}
 thisPath <- function() {
   cmdArgs <- commandArgs(trailingOnly = FALSE)

@@ -8,9 +8,10 @@ R code to produce a simple date and clock plot in Roman numerals & Latin text (G
 1. Install the following libraries in R:
 - <code><a href="https://cran.r-project.org/web/packages/caroline/index.html">caroline</a></code>
 - <code><a href="https://lubridate.tidyverse.org/">lubridate</a></code>
+- <code><a href="https://cran.r-project.org/web/packages/rstudioapi/index.html">rstudioapi</a></code>
 
 You can do this easily with the following command:
-> <code>install.packages(c("caroline", "lubridate"))</code>
+> <code>install.packages(c("caroline", "lubridate", "rstudioapi"))</code>
 
 2. Download the Roman festivals (<em>feriae</em>) dataset (<code>feriae.RData</code>) and Latin number names dataset (<code>RomNumNam.RData</code>) into the source directory.
 

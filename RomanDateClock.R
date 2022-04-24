@@ -123,6 +123,28 @@ if (as.numeric(min.now) == 0) {
   min.rom <- sprintf("%02d",0)
 }
 
+# set working directory to script's location
+stub <- function() {}
+thisPath <- function() {
+  cmdArgs <- commandArgs(trailingOnly = FALSE)
+  if (length(grep("^-f$", cmdArgs)) > 0) {
+    # R console option
+    normalizePath(dirname(cmdArgs[grep("^-f", cmdArgs) + 1]))[1]
+  } else if (length(grep("^--file=", cmdArgs)) > 0) {
+    # Rscript/R console option
+    scriptPath <- normalizePath(dirname(sub("^--file=", "", cmdArgs[grep("^--file=", cmdArgs)])))[1]
+  } else if (Sys.getenv("RSTUDIO") == "1") {
+    # RStudio
+    dirname(rstudioapi::getSourceEditorContext()$path)
+  } else if (is.null(attr(stub, "srcref")) == FALSE) {
+    # 'source'd via R console
+    dirname(normalizePath(attr(attr(stub, "srcref"), "srcfile")$filename))
+  } else {
+    stop("Cannot find file path")
+  }
+}
+setwd(thisPath())
+
 # time as numbers in Latin
 load("RomNumNam.RData")
 LatinHr <- ifelse(as.numeric(hour.now) == 0, "media nocte", romNumName$LatinNumName[which(romNumName$Num == as.numeric(hour.now))]) 

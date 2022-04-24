@@ -2,7 +2,7 @@
 
 <img align="right" src="www/RomanClockEx.png" alt="Roman Calendar/Clock" width="300" style="margin-top: 20px">
 
-R code to produce a simple date and clock plot in Roman numerals (Gregorian) and Latin (Roman calendar). Works on a 24-hour system. Clock plot based on a modified version of <code>caroline::<a href="https://search.r-project.org/CRAN/refmans/caroline/html/plotClock.html">plotClock</a></code>.
+R code to produce a simple date and clock plot in Roman numerals & Latin text (Gregorian) and Latin (Roman calendar). Works on a 24-hour system. Clock plot based on a modified version of <code>caroline::<a href="https://search.r-project.org/CRAN/refmans/caroline/html/plotClock.html">plotClock</a></code>.
 
 ## Set-up
 1. Install the following libraries in R:

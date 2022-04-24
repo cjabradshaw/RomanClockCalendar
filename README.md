@@ -32,10 +32,10 @@ You can do this easily with the following command:
     - if the day happens to be be a <a href="https://en.wikipedia.org/wiki/Roman_festivals">Roman festival</a> day (<em>feriatum</em>; those Romans partied a lot), then the relevant <em>feriatum</em> will be indicated; if it is not a festival day, the <em>feriatvm</em> will return <em>nvllvs</em> (none).
 
 Some examples of the Roman calendar in Latin:
-- '<em>Est Dies Mercvris ante diem XI Calendas Maivs MMDCCLXXV Ab Vrbe condita ... feriatvm : Parilia</em>' means 'It is Wednesday the eleventh day before the Kalends of May, 2775 years after the founding (of Rome) ... holiday: Festival in honour of Pales, the tutelary divinity of shepherds' (i.e., 20 April 2022)
-- '<em>Est Dies Satvrni ante diem VII Calendas Ianvarivs MMDCCLII Ab Vrbe condita ... feriatvm : Dies Natalis Solis Invicti</em>' means 'It is Saturday the seventh day before the Kalends of January, 2752 years after the founding (of Rome) ... holiday: Birth of the Invincible Sun' (i.e., 25 December 1999)
-- '<em>Est Dies Solis ante diem III Idibvs Febrvarivs MMDCCXLIII Ab Vrbe condita ... feriatvm : nvllvs</em>' means 'It is Sunday the third day before the Ides of February, 2743 years after the founding (of Rome) ... not a holiday' (i.e., Nelson Mandela released from prison; 11 February 1990)
-- '<em>Est Dies Lvnae ante diem V Nonas Ivlivs MMDCCXLII Ab Vrbe condita ... feriatvm : nvllvs</em>' means 'It is Monday the fifth day before the Nones of July, 2742 years after the founding (of Rome) ... not a holiday' (i.e., Tiananmen Square massacre begins; 03 July 1989)
+- '<em>Est Dies Mercvris ante diem XI Calendas Maivs MMDCCLXXV Ab Vrbe condita ... feriatvm : Parilia</em>' means 'It is Wednesday the eleventh day before the Kalends of May, 2775 years since the city (of Rome) was founded ... holiday: Festival in honour of Pales, the tutelary divinity of shepherds' (i.e., 20 April 2022)
+- '<em>Est Dies Satvrni ante diem VII Calendas Ianvarivs MMDCCLII Ab Vrbe condita ... feriatvm : Dies Natalis Solis Invicti</em>' means 'It is Saturday the seventh day before the Kalends of January, 2752 years since the city (of Rome) was founded ... holiday: Birth of the Invincible Sun' (i.e., 25 December 1999)
+- '<em>Est Dies Solis ante diem III Idibvs Febrvarivs MMDCCXLIII Ab Vrbe condita ... feriatvm : nvllvs</em>' means 'It is Sunday the third day before the Ides of February, 2743 years since the city (of Rome) was founded ... not a holiday' (i.e., Nelson Mandela released from prison; 11 February 1990)
+- '<em>Est Dies Lvnae ante diem V Nonas Ivlivs MMDCCXLII Ab Vrbe condita ... feriatvm : nvllvs</em>' means 'It is Monday the fifth day before the Nones of July, 2742 years since the city (of Rome) was founded ... not a holiday' (i.e., Tiananmen Square massacre begins; 03 July 1989)
   
 <br>
 Prof <a href="http://scholar.google.com.au/citations?sortby=pubdate&hl=en&user=1sO0O3wAAAAJ&view_op=list_works">Corey J. A. Bradshaw</a> <br>

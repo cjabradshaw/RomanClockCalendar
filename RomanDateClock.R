@@ -123,6 +123,11 @@ if (as.numeric(min.now) == 0) {
   min.rom <- sprintf("%02d",0)
 }
 
+# time as numbers in Latin
+load("RomNumNam.RData")
+LatinHr <- ifelse(as.numeric(hour.now) == 0, "media nocte", romNumName$LatinNumName[which(romNumName$Num == as.numeric(hour.now))]) 
+LatinMn <- romNumName$LatinNumName[which(romNumName$Num == as.numeric(min.now))]
+
 # feriae (Roman festivals)
 load("feriae.RData")
 feriae.sub <- which(feriae$month == month.now & feriae$day == day.now)
@@ -133,13 +138,15 @@ if (exists("feriae.sub")==F  | length(dies.feriae)==0) {
   dies.feriae <- "nullus"
 }
 
+# plot Gregorian date in Roman numerals, Latin date in Latin, and time in Roman numerals (and Latin text)
 par(xaxt="n", yaxt="n", pty="s")
 plot(0:10,0:10,pch=NULL,col=NULL,xlab="",ylab="")
 text(x=5, y=9, labels=paste(day.rom, ".", month.rom, ".", year.rom, sep=""), adj=0.5, cex=2.1, vfont=c("serif", "bold"))
 text(x=5, y=8, labels=LDate1, adj=0.5, cex=0.65, vfont=c("serif", "EUC"))
 text(x=5, y=7.5, labels=LDate2, adj=0.5, cex=0.65, vfont=c("serif", "EUC"))
 text(x=5, y=7, labels=paste("feriatum : ", dies.feriae, sep=""), adj=0.5, cex=0.65, vfont=c("serif", "EUC"))
-text(x=5, y=5.5, labels=paste(hour.rom, ":", min.rom, sep=""), adj=0.5, cex=1.6, vfont=c("serif", "EUC"))
-text(x=5, y=-0.1, labels="nvlla dies vmqvam memori vos eximet aevo", adj=0.5, cex=0.6, vfont=c("serif", "italic"))
+text(x=5, y=5.8, labels=paste(hour.rom, ":", min.rom, sep=""), adj=0.5, cex=1.6, vfont=c("serif", "EUC"))
+text(x=5, y=5.2, labels=paste(LatinHr, LatinMn, sep=" "), adj=0.5, cex=0.6, vfont=c("serif", "EUC"))
+text(x=5, y=-0.1, labels="nvlla dies vmqvam memori vos eximet aevo", adj=0.5, cex=0.6, vfont=c("serif", "EUC"))
 plotClockRoman(hour=as.numeric(hour.now), minute=as.numeric(min.now), x0 = 5, y0 = 2.5, r = 2)
 

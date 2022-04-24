@@ -13,7 +13,7 @@ R code to produce a simple date and clock plot in Roman numerals & Latin text (G
 You can do this easily with the following command:
 > <code>install.packages(c("caroline", "lubridate", "rstudioapi"))</code>
 
-2. Download the Roman festivals (<em>feriae</em>) dataset (<code>feriae.RData</code>) and Latin number names dataset (<code>RomNumNam.RData</code>) into the source directory.
+2. Download the Roman festivals (<em>feriae</em>) dataset (<code>feriae.RData</code>) and Latin number names dataset (<code>RomNumNam.RData</code>) into the source directory (i.e., the directory in which the script <code>RomanDateClock.R</code> lives).
 
 3. Run the script <code>RomanDateClock.R</code> in R, then you're ready to plot a real-time date and clock in Roman numerals & Latin. 
 

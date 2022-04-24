@@ -62,7 +62,7 @@ if (day.now == 1) {
 # Other days
 if (day.now > 1 & day.now < (Nones[month.now] - 1)) {
   daycount <- as.roman(as.numeric(Nones[month.now] - day.now + 1))
-  LatinDateDesc <- paste(daycount, "Nonas", LatinMonth[month.now], sep=" ")
+  LatinDateDesc <- paste(daycount, "Nonis", LatinMonth[month.now], sep=" ")
 }
 
 if (day.now > Nones[month.now] & day.now < (Ides[month.now] - 1)) {

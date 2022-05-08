@@ -105,16 +105,7 @@ if (day.now == as.numeric(lubridate::days_in_month(currentTime))) {
 if (Pridie == F) {
   LDate1 <- paste("Est", Ldow, "ante diem", LatinDateDesc, sep=" ")
 }
-if (Pridie == T) {
-  LDate1 <- paste("Est", Ldow, LatinDateDesc, sep=" ")
-}
-if (day.now == 1) {
-  LDate1 <- paste("Est", Ldow, LatinDateDesc, sep=" ")
-}
-if (day.now == Nones[month.now]) {
-  LDate1 <- paste("Est", Ldow, LatinDateDesc, sep=" ")
-}
-if (day.now == Ides[month.now]) {
+if (day.now == 1 | Pridie == T | day.now == Nones[month.now] | day.now == Ides[month.now]) {
   LDate1 <- paste("Est", Ldow, LatinDateDesc, sep=" ")
 }
 LDate2 <- paste(as.roman(year.now + 753), "Ab Vrbe condita", sep=" ") # from the establishment of Rome 753 BC

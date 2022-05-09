@@ -18,6 +18,7 @@ You can do this easily with the following command:
 3. Run the script <code>RomanDateClock.R</code> in R, then you're ready to plot a real-time date and clock in Roman numerals & Latin. 
 
 - Note that there is no zero in Roman numerals (the Romans had no need for it, apparently). I've therefore just incuded '00' when the hour or minute = zero in the 24-hour clock.
+- While the time follows the modern 24-hour clock, it's worth noting that the Romans divided the time between sunrise and sunset into equal increments. This means that winter 'hours' were shorter than summer 'hours'. Generally, they referred to the 'first hour', 'second hour', ..., 'noon' (<em>meridies</em>), etc.
 - I have provided the time in Latin text as well below the Roman numeral time display: e.g., the time 15:49 is spelt out as <em>qvindecim vndeqvinqvaginta</em>; note that when the hour = 00, I have replaced <em>nihil</em> ('nothing') with <em>media nocte</em> ('midnight')
 - Top date is the Gregorian date in Roman numeral format (DD.MM.YYYY).
 - Also provided is the Roman calendar date in in Latin. Briefly, the date format follows these rules:

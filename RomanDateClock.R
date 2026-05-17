@@ -1,7 +1,7 @@
 ## Roman numeral date & clock
 ## Corey Bradshaw
 ## Flinders University
-## April 2022
+## April 2022 / updated May 2026
 
 ## modified from plotClock in the caroline package
 plotClockRoman <- function(hour, minute, second = 0, x0 = 0, y0 = 0, r = 1) {

@@ -2,7 +2,22 @@
 
 <img align="right" src="www/RomanClockEx.png" alt="Roman Calendar/Clock" width="300" style="margin-top: 20px">
 
-R code to produce a simple date and clock plot in Roman numerals & Latin text (Gregorian) and Latin (Roman calendar). Works on a 24-hour system. Clock plot based on a modified version of <code>caroline::<a href="https://search.r-project.org/CRAN/refmans/caroline/html/plotClock.html">plotClock</a></code>.
+R and Python code to produce a Roman numeral date and clock in Roman numerals and Latin text (Gregorian) and Latin (Roman calendar). The repository now includes a PySide6 desktop app for macOS-friendly use, alongside the original R script. Clock plot based on a modified version of <code>caroline::<a href="https://search.r-project.org/CRAN/refmans/caroline/html/plotClock.html">plotClock</a></code>.
+
+## Python desktop app
+1. Create and activate a virtual environment:
+   - <code>python3 -m venv .venv</code>
+   - <code>source .venv/bin/activate</code>
+
+2. Install the dependency:
+   - <code>pip install -r requirements.txt</code>
+
+3. Launch the live desktop clock:
+   - <code>python3 roman_clock_desktop.py</code>
+
+The desktop app reads the converted data files in <code>data/roman_number_names.csv</code> and <code>data/roman_festivals.csv</code>, updates once per second from your computer clock, and shows the Roman numeral clock, Gregorian date, Roman calendar date, and <em>feriae</em> in a standalone window.
+
+The Python source files in this repository are lightweight and suitable for GitHub. The app uses the smaller <code>PySide6_Essentials</code> package, and local environments and build artefacts such as <code>.venv/</code>, <code>__pycache__/</code>, and packaged app outputs are intentionally ignored and should not be committed.
 
 ## Set-up
 1. Install the following libraries in R:
@@ -37,6 +52,12 @@ Some examples of the Roman calendar in Latin:
 - '<em>Est Dies Satvrni ante diem VII Calendas Ianvarivs MMDCCLII Ab Vrbe condita ... feriatvm : Dies Natalis Solis Invicti</em>' means 'It is Saturday the seventh day before the Kalends of January, 2752 years since the city (of Rome) was founded ... holiday: Birth of the Invincible Sun' (i.e., 25 December 1999)
 - '<em>Est Dies Solis ante diem III Idibvs Febrvarivs MMDCCXLIII Ab Vrbe condita ... feriatvm : nvllvs</em>' means 'It is Sunday the third day before the Ides of February, 2743 years since the city (of Rome) was founded ... not a holiday' (i.e., Nelson Mandela released from prison; 11 February 1990)
 - '<em>Est Dies Lvnae ante diem V Nonas Ivlivs MMDCCXLII Ab Vrbe condita ... feriatvm : nvllvs</em>' means 'It is Monday the fifth day before the Nones of July, 2742 years since the city (of Rome) was founded ... not a holiday' (i.e., Tiananmen Square massacre begins; 03 July 1989)
+
+## Repository contents
+- <code>RomanDateClock.R</code> — original R implementation
+- <code>roman_clock_desktop.py</code> — PySide6 desktop application
+- <code>data/roman_number_names.csv</code> — converted Latin number names data
+- <code>data/roman_festivals.csv</code> — converted Roman festival data
   
 <br>
 Prof <a href="http://scholar.google.com.au/citations?sortby=pubdate&hl=en&user=1sO0O3wAAAAJ&view_op=list_works">Corey J. A. Bradshaw</a> <br>

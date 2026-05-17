@@ -9,7 +9,7 @@ from datetime import datetime
 from pathlib import Path
 
 from PySide6.QtCore import QPointF, QRectF, Qt, QTimer, QUrl
-from PySide6.QtGui import QColor, QDesktopServices, QFont, QFontMetrics, QPainter, QPen
+from PySide6.QtGui import QColor, QDesktopServices, QFont, QFontMetrics, QImage, QPainter, QPainterPath, QPen, QRadialGradient
 from PySide6.QtWidgets import QApplication, QWidget
 
 
@@ -18,6 +18,7 @@ DATA_DIR = BASE_DIR / "data"
 NUMBER_NAMES_PATH = DATA_DIR / "roman_number_names.csv"
 FESTIVALS_PATH = DATA_DIR / "roman_festivals.csv"
 FESTIVAL_LINKS_PATH = DATA_DIR / "roman_festival_links.csv"
+COIN_PORTRAIT_PATH = DATA_DIR / "roman_coin_portrait.png"
 
 LATIN_WEEKDAYS = (
     "Dies Lvnae",
@@ -212,6 +213,7 @@ class RomanClockWidget(QWidget):
         self.number_names = load_number_names(NUMBER_NAMES_PATH)
         self.festivals = load_festivals(FESTIVALS_PATH)
         self.festival_links = load_festival_links(FESTIVAL_LINKS_PATH)
+        self.coin_portrait = QImage(str(COIN_PORTRAIT_PATH))
         self.state = build_clock_state(datetime.now(), self.number_names, self.festivals, self.festival_links)
         self.festival_link_rect: QRectF | None = None
         self.second_timer = QTimer(self)
@@ -220,7 +222,7 @@ class RomanClockWidget(QWidget):
 
         self.setWindowTitle("Roman Clock Calendar")
         self.resize(760, 920)
-        self.setMinimumSize(620, 760)
+        self.setMinimumSize(700, 900)
         self.setMouseTracking(True)
         self.sync_to_system_clock()
 
@@ -248,54 +250,153 @@ class RomanClockWidget(QWidget):
         width = self.width()
         height = self.height()
         centre_x = width / 2
-        clock_centre_y = height * 0.69
-        clock_radius = min(width * 0.29, height * 0.24)
 
         self.festival_link_rect = None
-        self.draw_text_block(painter, width, height)
+        clock_centre_y, clock_radius = self.draw_text_block(painter, width, height)
         self.draw_clock_face(painter, centre_x, clock_centre_y, clock_radius)
 
-    def draw_text_block(self, painter: QPainter, width: int, height: int) -> None:
+    def draw_text_block(self, painter: QPainter, width: int, height: int) -> tuple[float, float]:
         centre_x = width / 2
+        top_padding = max(24.0, height * 0.03)
+        line_gap = max(10.0, height * 0.012)
+        block_gap = max(20.0, height * 0.024)
+        quote_padding = max(28.0, height * 0.035)
+        current_top = top_padding
 
-        self.draw_text(painter, centre_x, height * 0.08, f"{self.state.day_roman}.{self.state.month_roman}.{self.state.year_roman}", 28, bold=True)
-        self.draw_text(painter, centre_x, height * 0.13, self.state.latin_date_line_one, 13)
-        self.draw_text(painter, centre_x, height * 0.17, self.state.latin_date_line_two, 13)
+        def place_line(
+            text: str,
+            point_size: int,
+            *,
+            bold: bool = False,
+            italic: bool = False,
+            colour: QColor | None = None,
+            underline: bool = False,
+            gap_after: float = line_gap,
+        ) -> QRectF:
+            nonlocal current_top
+            rect = self.draw_text(
+                painter,
+                centre_x,
+                current_top + point_size,
+                text,
+                point_size,
+                bold=bold,
+                italic=italic,
+                colour=colour,
+                underline=underline,
+            )
+            current_top = rect.bottom() + gap_after
+            return rect
+
+        place_line(f"{self.state.day_roman}.{self.state.month_roman}.{self.state.year_roman}", 56, bold=True)
+        place_line(self.state.latin_date_line_one, 20)
+        place_line(self.state.latin_date_line_two, 20)
         self.festival_link_rect = self.draw_text(
             painter,
             centre_x,
-            height * 0.21,
+            current_top + 20,
             f"feriatvm : {self.state.festival_text}",
-            13,
+            20,
             colour=QColor("#1d4f91") if self.state.festival_url else QColor("#2d241c"),
             underline=bool(self.state.festival_url),
         )
-        self.draw_text(
-            painter,
-            centre_x,
-            height * 0.31,
+        current_top = self.festival_link_rect.bottom() + block_gap
+        place_line(
             f"{self.state.hour_roman} : {self.state.minute_roman} : {self.state.second_roman}",
-            24,
+            36,
+            gap_after=line_gap,
         )
-        self.draw_text(
+        place_line(
+            f"{self.state.latin_hour} {self.state.latin_minute} {self.state.latin_second}",
+            20,
+            gap_after=block_gap,
+        )
+
+        quote_rect = self.draw_text(
             painter,
             centre_x,
-            height * 0.36,
-            f"{self.state.latin_hour} {self.state.latin_minute} {self.state.latin_second}",
-            13,
+            height - quote_padding - 18,
+            "nvlla dies vmqvam memori vos eximet aevo",
+            18,
+            italic=True,
         )
-        self.draw_text(painter, centre_x, height * 0.95, "nvlla dies vmqvam memori vos eximet aevo", 12)
+
+        available_top = current_top
+        available_bottom = quote_rect.top() - block_gap
+        clock_centre_y = (available_top + available_bottom) / 2
+        clock_radius = min(width * 0.22, max(0.0, (available_bottom - available_top) / 2))
+        return clock_centre_y, clock_radius
 
     def draw_clock_face(self, painter: QPainter, centre_x: float, centre_y: float, radius: float) -> None:
         painter.save()
-
-        painter.setPen(QPen(QColor("#46382b"), 3))
-        painter.setBrush(QColor("#f8f3e8"))
-        painter.drawEllipse(QPointF(centre_x, centre_y), radius * 1.1, radius * 1.1)
+        self.draw_coin_face(painter, centre_x, centre_y, radius)
 
         self.draw_tick_marks(painter, centre_x, centre_y, radius)
         self.draw_hour_labels(painter, centre_x, centre_y, radius)
         self.draw_hands(painter, centre_x, centre_y, radius)
+
+        painter.restore()
+
+    def draw_coin_face(self, painter: QPainter, centre_x: float, centre_y: float, radius: float) -> None:
+        painter.save()
+
+        outer_radius = radius * 1.14
+        painter.setPen(QPen(QColor("#705334"), 4))
+        painter.setBrush(QColor("#c8a66b"))
+        painter.drawEllipse(QPointF(centre_x, centre_y), outer_radius, outer_radius)
+
+        painter.setPen(QPen(QColor("#e0c089"), 2))
+        painter.setBrush(Qt.BrushStyle.NoBrush)
+        painter.drawEllipse(QPointF(centre_x, centre_y), radius * 1.06, radius * 1.06)
+
+        painter.setOpacity(1.0)
+        painter.setPen(QPen(QColor("#8e6a3f"), 2))
+        painter.setBrush(QColor("#f8f3e8"))
+        painter.drawEllipse(QPointF(centre_x, centre_y), radius * 0.98, radius * 0.98)
+
+        painter.setPen(QPen(QColor("#9d7a4b"), 1))
+        for bead in range(48):
+            angle = math.pi / 2 - (2 * math.pi * bead / 48)
+            bead_point = QPointF(
+                centre_x + math.cos(angle) * radius * 1.025,
+                centre_y - math.sin(angle) * radius * 1.025,
+            )
+            painter.setBrush(QColor("#b88f59"))
+            painter.drawEllipse(bead_point, max(1.5, radius * 0.016), max(1.5, radius * 0.016))
+
+        self.draw_coin_portrait(painter, centre_x, centre_y, radius)
+
+        painter.restore()
+
+    def draw_coin_portrait(self, painter: QPainter, centre_x: float, centre_y: float, radius: float) -> None:
+        painter.save()
+        if self.coin_portrait.isNull():
+            painter.restore()
+            return
+
+        portrait_rect = QRectF(
+            centre_x - radius * 0.43,
+            centre_y - radius * 0.56,
+            radius * 0.90,
+            radius * 1.10,
+        )
+        clip_path = QPainterPath()
+        clip_path.addEllipse(portrait_rect.adjusted(radius * 0.00, radius * 0.03, -radius * 0.02, -radius * 0.01))
+        painter.setClipPath(clip_path)
+        painter.setOpacity(0.78)
+        painter.drawImage(portrait_rect, self.coin_portrait)
+
+        painter.setOpacity(0.10)
+        painter.fillPath(clip_path, QColor("#b8874a"))
+
+        painter.setClipping(False)
+        edge_blend = QRadialGradient(QPointF(centre_x, centre_y), radius * 0.62)
+        edge_blend.setColorAt(0.0, QColor(214, 181, 122, 0))
+        edge_blend.setColorAt(0.68, QColor(214, 181, 122, 0))
+        edge_blend.setColorAt(0.88, QColor(200, 166, 107, 95))
+        edge_blend.setColorAt(1.0, QColor(200, 166, 107, 185))
+        painter.setOpacity(1.0)
+        painter.fillPath(clip_path, edge_blend)
 
         painter.restore()
 
@@ -307,10 +408,10 @@ class RomanClockWidget(QWidget):
         for tick_index in range(60):
             angle = math.pi / 2 - (2 * math.pi * tick_index / 60)
             outer = QPointF(
-                centre_x + math.cos(angle) * radius * 1.02,
-                centre_y - math.sin(angle) * radius * 1.02,
+                centre_x + math.cos(angle) * radius,
+                centre_y - math.sin(angle) * radius,
             )
-            inner_scale = 0.88 if tick_index % 5 == 0 else 0.94
+            inner_scale = 0.93 if tick_index % 5 == 0 else 0.97
             inner = QPointF(
                 centre_x + math.cos(angle) * radius * inner_scale,
                 centre_y - math.sin(angle) * radius * inner_scale,
@@ -329,8 +430,8 @@ class RomanClockWidget(QWidget):
 
         for index, label in enumerate(labels):
             angle = math.pi / 2 - (2 * math.pi * (index + 1) / 12)
-            x = centre_x + math.cos(angle) * radius * 0.82
-            y = centre_y - math.sin(angle) * radius * 0.82
+            x = centre_x + math.cos(angle) * radius * 0.78
+            y = centre_y - math.sin(angle) * radius * 0.78
             rect = metrics.boundingRect(label)
             text_rect = QRectF(
                 x - rect.width() / 2 - 6,
@@ -386,11 +487,13 @@ class RomanClockWidget(QWidget):
         point_size: int,
         *,
         bold: bool = False,
+        italic: bool = False,
         colour: QColor | None = None,
         underline: bool = False,
     ) -> QRectF:
         font = QFont("Times New Roman", point_size)
         font.setBold(bold)
+        font.setItalic(italic)
         font.setUnderline(underline)
         painter.setFont(font)
         painter.setPen(colour or QColor("#2d241c"))

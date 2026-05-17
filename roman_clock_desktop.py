@@ -8,8 +8,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
-from PySide6.QtCore import QPointF, QRectF, Qt, QTimer
-from PySide6.QtGui import QColor, QFont, QFontMetrics, QPainter, QPen
+from PySide6.QtCore import QPointF, QRectF, Qt, QTimer, QUrl
+from PySide6.QtGui import QColor, QDesktopServices, QFont, QFontMetrics, QPainter, QPen
 from PySide6.QtWidgets import QApplication, QWidget
 
 
@@ -17,6 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 NUMBER_NAMES_PATH = DATA_DIR / "roman_number_names.csv"
 FESTIVALS_PATH = DATA_DIR / "roman_festivals.csv"
+FESTIVAL_LINKS_PATH = DATA_DIR / "roman_festival_links.csv"
 
 LATIN_WEEKDAYS = (
     "Dies Lvnae",
@@ -59,6 +60,7 @@ class RomanClockState:
     latin_minute: str
     latin_second: str
     festival_text: str
+    festival_url: str | None
     hour: int
     minute: int
     second: int
@@ -106,6 +108,12 @@ def load_festivals(path: Path) -> dict[tuple[int, int], list[str]]:
             key = (int(row["month"]), int(row["day"]))
             festivals.setdefault(key, []).append(row["holiday"])
     return festivals
+
+
+def load_festival_links(path: Path) -> dict[str, str]:
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle)
+        return {row["holiday"].strip(): row["url"] for row in reader}
 
 
 def roman_time_component(value: int) -> str:
@@ -160,7 +168,12 @@ def resolve_latin_date_description(now: datetime) -> tuple[str, bool]:
     return latin_date_desc, pridie
 
 
-def build_clock_state(now: datetime, number_names: dict[int, str], festivals: dict[tuple[int, int], list[str]]) -> RomanClockState:
+def build_clock_state(
+    now: datetime,
+    number_names: dict[int, str],
+    festivals: dict[tuple[int, int], list[str]],
+    festival_links: dict[str, str],
+) -> RomanClockState:
     latin_date_desc, pridie = resolve_latin_date_description(now)
     weekday_name = LATIN_WEEKDAYS[now.weekday()]
     month_index = now.month - 1
@@ -170,7 +183,7 @@ def build_clock_state(now: datetime, number_names: dict[int, str], festivals: di
     else:
         latin_date_line_one = f"Est {weekday_name} ante diem {latin_date_desc}"
 
-    festival_names = festivals.get((now.month, now.day), ["nvllvs"])
+    festival_name = festivals.get((now.month, now.day), ["nvllvs"])[0].strip()
     latin_hour = "media nocte" if now.hour == 0 else number_names[now.hour]
 
     return RomanClockState(
@@ -185,7 +198,8 @@ def build_clock_state(now: datetime, number_names: dict[int, str], festivals: di
         latin_hour=latin_hour,
         latin_minute=number_names[now.minute],
         latin_second=number_names[now.second],
-        festival_text=", ".join(festival_names),
+        festival_text=festival_name,
+        festival_url=festival_links.get(festival_name),
         hour=now.hour,
         minute=now.minute,
         second=now.second,
@@ -197,7 +211,9 @@ class RomanClockWidget(QWidget):
         super().__init__()
         self.number_names = load_number_names(NUMBER_NAMES_PATH)
         self.festivals = load_festivals(FESTIVALS_PATH)
-        self.state = build_clock_state(datetime.now(), self.number_names, self.festivals)
+        self.festival_links = load_festival_links(FESTIVAL_LINKS_PATH)
+        self.state = build_clock_state(datetime.now(), self.number_names, self.festivals, self.festival_links)
+        self.festival_link_rect: QRectF | None = None
         self.second_timer = QTimer(self)
         self.second_timer.setInterval(1000)
         self.second_timer.timeout.connect(self.refresh_state)
@@ -205,6 +221,7 @@ class RomanClockWidget(QWidget):
         self.setWindowTitle("Roman Clock Calendar")
         self.resize(760, 920)
         self.setMinimumSize(620, 760)
+        self.setMouseTracking(True)
         self.sync_to_system_clock()
 
     def sync_to_system_clock(self) -> None:
@@ -219,7 +236,7 @@ class RomanClockWidget(QWidget):
             self.second_timer.start()
 
     def refresh_state(self) -> None:
-        self.state = build_clock_state(datetime.now(), self.number_names, self.festivals)
+        self.state = build_clock_state(datetime.now(), self.number_names, self.festivals, self.festival_links)
         self.update()
 
     def paintEvent(self, event) -> None:  # noqa: N802
@@ -234,6 +251,7 @@ class RomanClockWidget(QWidget):
         clock_centre_y = height * 0.69
         clock_radius = min(width * 0.29, height * 0.24)
 
+        self.festival_link_rect = None
         self.draw_text_block(painter, width, height)
         self.draw_clock_face(painter, centre_x, clock_centre_y, clock_radius)
 
@@ -243,7 +261,15 @@ class RomanClockWidget(QWidget):
         self.draw_text(painter, centre_x, height * 0.08, f"{self.state.day_roman}.{self.state.month_roman}.{self.state.year_roman}", 28, bold=True)
         self.draw_text(painter, centre_x, height * 0.13, self.state.latin_date_line_one, 13)
         self.draw_text(painter, centre_x, height * 0.17, self.state.latin_date_line_two, 13)
-        self.draw_text(painter, centre_x, height * 0.21, f"feriatvm : {self.state.festival_text}", 13)
+        self.festival_link_rect = self.draw_text(
+            painter,
+            centre_x,
+            height * 0.21,
+            f"feriatvm : {self.state.festival_text}",
+            13,
+            colour=QColor("#1d4f91") if self.state.festival_url else QColor("#2d241c"),
+            underline=bool(self.state.festival_url),
+        )
         self.draw_text(
             painter,
             centre_x,
@@ -351,14 +377,58 @@ class RomanClockWidget(QWidget):
         painter.setPen(pen)
         painter.drawLine(QPointF(centre_x, centre_y), end_point)
 
-    def draw_text(self, painter: QPainter, centre_x: float, y: float, text: str, point_size: int, *, bold: bool = False) -> None:
+    def draw_text(
+        self,
+        painter: QPainter,
+        centre_x: float,
+        y: float,
+        text: str,
+        point_size: int,
+        *,
+        bold: bool = False,
+        colour: QColor | None = None,
+        underline: bool = False,
+    ) -> QRectF:
         font = QFont("Times New Roman", point_size)
         font.setBold(bold)
+        font.setUnderline(underline)
         painter.setFont(font)
-        painter.setPen(QColor("#2d241c"))
+        painter.setPen(colour or QColor("#2d241c"))
 
         rect = QRectF(20, y - point_size * 1.2, self.width() - 40, point_size * 2.4)
         painter.drawText(rect, Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignVCenter, text)
+
+        metrics = QFontMetrics(font)
+        text_rect = metrics.boundingRect(text)
+        return QRectF(
+            centre_x - (text_rect.width() / 2) - 8,
+            y - (text_rect.height() / 2) - 6,
+            text_rect.width() + 16,
+            text_rect.height() + 12,
+        )
+
+    def mouseMoveEvent(self, event) -> None:  # noqa: N802
+        if self.festival_link_rect and self.state.festival_url and self.festival_link_rect.contains(event.position()):
+            self.setCursor(Qt.CursorShape.PointingHandCursor)
+        else:
+            self.unsetCursor()
+        super().mouseMoveEvent(event)
+
+    def mousePressEvent(self, event) -> None:  # noqa: N802
+        if (
+            event.button() == Qt.MouseButton.LeftButton
+            and self.festival_link_rect
+            and self.state.festival_url
+            and self.festival_link_rect.contains(event.position())
+        ):
+            QDesktopServices.openUrl(QUrl(self.state.festival_url))
+            event.accept()
+            return
+        super().mousePressEvent(event)
+
+    def leaveEvent(self, event) -> None:  # noqa: N802
+        self.unsetCursor()
+        super().leaveEvent(event)
 
 
 def main() -> int:

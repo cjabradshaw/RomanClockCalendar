@@ -15,7 +15,7 @@ R and Python code to produce a Roman numeral date and clock in Roman numerals an
 3. Launch the live desktop clock:
    - <code>python3 roman_clock_desktop.py</code>
 
-The desktop app reads the converted data files in <code>data/roman_number_names.csv</code> and <code>data/roman_festivals.csv</code>, updates once per second from your computer clock, and shows the Roman numeral clock, Gregorian date, Roman calendar date, and <em>feriae</em> in a standalone window.
+The desktop app reads the converted data files in <code>data/roman_number_names.csv</code>, <code>data/roman_festivals.csv</code>, and <code>data/roman_festival_links.csv</code>, updates once per second from your computer clock, and shows the Roman numeral clock, Gregorian date, Roman calendar date, and <em>feriae</em> in a standalone window. When a festival is present, the <code>feriatvm</code> line is clickable and opens a background link in your browser.
 
 The Python source files in this repository are lightweight and suitable for GitHub. The app uses the smaller <code>PySide6_Essentials</code> package, and local environments and build artefacts such as <code>.venv/</code>, <code>__pycache__/</code>, and packaged app outputs are intentionally ignored and should not be committed.
 
@@ -58,6 +58,7 @@ Some examples of the Roman calendar in Latin:
 - <code>roman_clock_desktop.py</code> — PySide6 desktop application
 - <code>data/roman_number_names.csv</code> — converted Latin number names data
 - <code>data/roman_festivals.csv</code> — converted Roman festival data
+- <code>data/roman_festival_links.csv</code> — festival lookup table for desktop app links
   
 <br>
 Prof <a href="http://scholar.google.com.au/citations?sortby=pubdate&hl=en&user=1sO0O3wAAAAJ&view_op=list_works">Corey J. A. Bradshaw</a> <br>

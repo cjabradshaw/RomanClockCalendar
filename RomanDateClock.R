@@ -147,9 +147,9 @@ getRomanClockState <- function(currentTime = Sys.time()) {
   year.rom <- as.character(utils::as.roman(year.now))
   month.rom <- as.character(utils::as.roman(month.now))
   day.rom <- as.character(utils::as.roman(day.now))
-  hour.rom <- if (hour.now == 0) "00" else as.character(utils::as.roman(hour.now))
-  min.rom <- if (min.now == 0) "00" else as.character(utils::as.roman(min.now))
-  sec.rom <- if (sec.now == 0) "00" else as.character(utils::as.roman(sec.now))
+  hour.rom <- if (hour.now == 0) "N" else as.character(utils::as.roman(hour.now))
+  min.rom <- if (min.now == 0) "N" else as.character(utils::as.roman(min.now))
+  sec.rom <- if (sec.now == 0) "N" else as.character(utils::as.roman(sec.now))
 
   LatinHr <- if (hour.now == 0) "media nocte" else romNumName$LatinNumName[match(hour.now, romNumName$Num)]
   LatinMn <- romNumName$LatinNumName[match(min.now, romNumName$Num)]

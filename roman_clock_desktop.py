@@ -118,7 +118,7 @@ def load_festival_links(path: Path) -> dict[str, str]:
 
 
 def roman_time_component(value: int) -> str:
-    return "00" if value == 0 else int_to_roman(value)
+    return "NN" if value == 0 else int_to_roman(value)
 
 
 def resolve_latin_date_description(now: datetime) -> tuple[str, bool]:

@@ -1,24 +1,32 @@
 from __future__ import annotations
 
+import os
+import sys
+from pathlib import Path
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and PyInstaller """
+    if getattr(sys, 'frozen', False):
+        base_path = Path(sys._MEIPASS)
+    else:
+        base_path = Path(__file__).parent
+
+    return base_path / relative_path
+    
 import csv
 import math
-import sys
 from calendar import monthrange
 from dataclasses import dataclass
 from datetime import datetime
-from pathlib import Path
 
 from PySide6.QtCore import QPointF, QRectF, Qt, QTimer, QUrl
 from PySide6.QtGui import QColor, QDesktopServices, QFont, QFontMetrics, QImage, QPainter, QPainterPath, QPen, QRadialGradient
 from PySide6.QtWidgets import QApplication, QWidget
 
-
-BASE_DIR = Path(__file__).resolve().parent
-DATA_DIR = BASE_DIR / "data"
-NUMBER_NAMES_PATH = DATA_DIR / "roman_number_names.csv"
-FESTIVALS_PATH = DATA_DIR / "roman_festivals.csv"
-FESTIVAL_LINKS_PATH = DATA_DIR / "roman_festival_links.csv"
-COIN_PORTRAIT_PATH = DATA_DIR / "roman_coin_portrait.png"
+NUMBER_NAMES_PATH = resource_path("data/roman_number_names.csv")
+FESTIVALS_PATH = resource_path("data/roman_festivals.csv")
+FESTIVAL_LINKS_PATH = resource_path("data/roman_festival_links.csv")
+COIN_PORTRAIT_PATH = resource_path("data/roman_coin_portrait.png")
 
 LATIN_WEEKDAYS = (
     "Dies Lvnae",

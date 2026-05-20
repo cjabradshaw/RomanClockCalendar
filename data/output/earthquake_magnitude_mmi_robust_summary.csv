@@ -1,0 +1,6 @@
+metric,value
+records_analysed,23893
+spearman_rho,0.4703614382630803
+spearman_p_value,0
+kendall_tau,0.32485188626113837
+kendall_p_value,0

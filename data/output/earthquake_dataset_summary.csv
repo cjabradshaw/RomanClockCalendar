@@ -1,0 +1,8 @@
+dataset,quality_tier,record_source,impact_source,records
+high_quality,high,ncei,ncei_mmi,4
+high_quality,high,usgs,usgs_mmi,24075
+high_quality,high,usgs+ncei,usgs_mmi,100
+extended,high,ncei,ncei_mmi,4
+extended,high,usgs,usgs_mmi,24075
+extended,high,usgs+ncei,usgs_mmi,100
+extended,medium,usgs,usgs_cdi,104503
